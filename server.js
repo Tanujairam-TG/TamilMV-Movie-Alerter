@@ -1,15 +1,14 @@
-require('.env').config()
+require('dotenv').config({ path: './config.env' });
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
-require('.env').config()
+// It's not necessary to call dotenv.config() a second time, so we remove it.
 require('./startup/logging')();
 require('./services/database.service')();
 require('./startup/routes')(app);
 
 // Scheduling Cron Job
 require('./startup/cron-job');
-
 
 app.listen(port, () => console.log(`SERVER LISTENING ON PORT ${port}`));
