@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-require('dotenv').config()
+require('.env').config()
 require('./startup/logging')();
 require('./services/database.service')();
 require('./startup/routes')(app);
